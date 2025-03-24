@@ -1,0 +1,131 @@
+<section
+  class="bg-gray-800 border border-gray-700 p-5 rounded-lg max-w-[650px] mx-auto"
+>
+  <form onsubmit="event.preventDefault()" class="max-w-[85%] mx-auto">
+    <label for="newTaskTitle" class="flex flex-col max-w-[500px] gap-2">
+      <span
+        class="text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-gray-700 p-2.5 rounded shadow max-w-[150px]"
+      >
+        Titulo de Tarea:
+      </span>
+
+      <input
+        type="newTaskTitle"
+        id="newTaskTitle"
+        class="mt-0.5 w-auto p-2.5 rounded shadow-sm sm:text-sm border border-gray-700 dark:bg-gray-800 dark:text-white"
+      />
+    </label>
+
+    <div class="mt-5">
+      <label for="newTask" class="flex flex-col gap-2.5">
+        <span
+          class="text-sm font-medium text-gray-700 dark:text-gray-200 dark:bg-gray-700 p-2.5 rounded shadow max-w-[150px]"
+        >
+          Mensaje de Tarea:
+        </span>
+        <div
+          class="relative overflow-hidden rounded border border-gray-300 shadow-sm focus-within:ring focus-within:ring-blue-600 dark:border-gray-600"
+        >
+          <textarea
+            (input)="checkifEmpty()"
+            id="newTask"
+            class="w-full resize-none p-5 border-none focus:ring-0 focus:outline-0 sm:text-sm dark:bg-gray-800 dark:text-white"
+            rows="5"
+          ></textarea>
+
+          <div
+            [ngClass]="textAreaEmpty ? 'hidden' : 'block'"
+            class="flex items-center justify-end gap-2 p-1.5"
+          >
+            <button
+              (click)="clearTextAreaBtn()"
+              type="button"
+              class="rounded border border-transparent px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-200 dark:hover:text-white"
+            >
+              Borrar
+            </button>
+
+            <button
+              (click)="createTask()"
+              type="button"
+              class="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700"
+            >
+              Guardar
+            </button>
+          </div>
+        </div>
+      </label>
+    </div>
+    <div class="text-center sm:text-end">
+      <button
+        (click)="showHideTasks()"
+        class="p-2.5 bg-blue-900 hover:bg-blue-950 transition-colors rounded mt-5 max-w-35"
+        type="button"
+        id="btnShowHide"
+      >
+        {{ !displayTasks ? "Ver Tareas" : "Ocultar Tareas" }}
+      </button>
+    </div>
+  </form>
+</section>
+
+<!-- show all tasks -->
+<section [ngClass]="displayTasks ? 'block' : 'hidden'">
+  <ng-container #allTasks>
+    <span class="items-center flex mb-7.5 mt-7.5">
+      <span class="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
+
+      <span class="shrink-0 px-4 text-gray-900 dark:text-white">
+        Todas las tareas
+      </span>
+
+      <span class="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
+    </span>
+    <article
+      *ngIf="tasks.length > 0; else noTasks"
+      class="bg-gray-800 grid border border-gray-700 p-5 rounded-2xl max-w-[835px] mx-auto grid-cols-1 sm:grid-cols-2 gap-10 content-center"
+    >
+      <a
+        *ngFor="let task of tasks"
+        class="block rounded-md border border-gray-300 p-4 shadow-sm sm:p-6"
+      >
+        <div class="sm:flex sm:justify-between sm:gap-4 lg:gap-6">
+          <div class="mt-4 sm:mt-0">
+            <h3
+              class="text-lg line-clamp-2 font-medium text-wrap text-gray-100"
+            >
+              {{ task.title }}
+            </h3>
+
+            <p
+              class="mt-4 line-clamp-4 text-sm text-wrap text-gray-100 max-w-[300px] overflow-scroll break-words"
+            >
+              {{ task.message }}
+            </p>
+          </div>
+          <button
+            (click)="deleteTask(task.id)"
+            class="text-lg hover:scale-125 hover:text-red-400 transition cursor-pointer max-w-max h-min"
+          >
+            <i class="fa-solid fa-trash-can-arrow-up"></i>
+          </button>
+        </div>
+
+        <dl class="mt-6 flex gap-4 lg:gap-6 justify-end">
+          <div class="flex flex-row-reverse items-center gap-3">
+            <dd class="text-xs text-gray-300">
+              <input
+                type="date"
+                id="taskDate"
+                value="{{ task.dateCreation | date : 'yyyy-MM-dd' }}"
+              />
+            </dd>
+          </div>
+        </dl>
+      </a>
+    </article>
+  </ng-container>
+  <ng-template #noTasks>
+    <h1 class="text-center text-3xl">No hay Tareas Creadas.</h1>
+  </ng-template>
+</section>
