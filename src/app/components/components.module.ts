@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { InputTaskFormComponent } from './input-task-form/input-task-form.component';
 import { AboutContentComponent } from './about-content/about-content.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ import { AboutContentComponent } from './about-content/about-content.component';
     AboutContentComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
