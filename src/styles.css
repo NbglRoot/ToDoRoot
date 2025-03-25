@@ -4,7 +4,7 @@
 
 /* tailwind and animate.css */
 @import "tailwindcss";
-@import "animate.css";
+/* @import "animate.css"; */
 
 @theme {
     --font-principal: 'Roboto', sans-serif;
