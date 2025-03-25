@@ -4,9 +4,9 @@ import { MainComponent } from './pages/main/main.component';
 import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/inicio', pathMatch: 'full'},
   {path: 'inicio', component: MainComponent},
   {path: 'sobre-calcroot', component: AboutComponent},
+  {path: '', redirectTo: '/inicio', pathMatch: 'full'},
   {path: '**', component: MainComponent},
 ];
 
