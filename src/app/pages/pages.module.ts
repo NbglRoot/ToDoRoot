@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
 import { ComponentsModule } from '../components/components.module';
 import { AboutComponent } from './about/about.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -10,6 +11,7 @@ import { AboutComponent } from './about/about.component';
   declarations: [
     MainComponent,
     AboutComponent,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { AboutComponent } from './about/about.component';
   exports: [
     MainComponent,
     AboutComponent,
+    ErrorComponent,
   ]
 })
 export class PagesModule {

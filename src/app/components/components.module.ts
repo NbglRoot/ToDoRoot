@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { InputTaskFormComponent } from './input-task-form/input-task-form.component';
 import { AboutContentComponent } from './about-content/about-content.component';
 import { RouterModule } from '@angular/router';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 
 
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     InputTaskFormComponent,
     AboutContentComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     InputTaskFormComponent,
     AboutContentComponent,
+    ErrorMessageComponent,
   ]
 })
 export class ComponentsModule { }
